@@ -1,0 +1,19 @@
+services:
+  backend:
+    build:
+      context: ./backend
+    ports:
+      - "8000:8000"
+    environment:
+      - PORT=8000
+      - FRONTEND_URL=http://localhost:4173
+      - NODE_ENV=production
+  frontend:
+    build:
+      context: ./frontend
+    ports:
+      - "4173:4173"
+    environment:
+      - VITE_BACKEND_URL=http://backend:8000
+    # depends_on:
+    #   - backend
